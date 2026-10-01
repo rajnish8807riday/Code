@@ -3,6 +3,7 @@ Depression Detection in Low-Resource Languages: A BERT-Based Deep Learning Appro
 
 Overview
 --------
+--------
 This repository contains Jupyter notebooks for experimenting with neural-network
 models for binary text classification on Hindi and Bhojpuri text datasets. The
 notebooks load text and labels, preprocess the text, train models, and evaluate
@@ -108,29 +109,34 @@ The BERT notebooks include a Transformers version pin in some cells
 Twitter embedding text file. Compatible package versions may need to be selected
 for your Python and TensorFlow environment.
 
-Suggested setup
----------------
-Create and activate a virtual environment, then install the main dependencies:
+Execution Environment: Google Colab
+------------------------------------
+These experiments were developed and run in **Google Colab**, rather than a
+local Jupyter Notebook environment. Google Colab provides hosted notebook
+execution and access to accelerator runtimes, including TPUs when available.
+The TPU runtime was the reason for choosing Colab for these experiments.
 
-    python -m venv .venv
+To run the notebooks:
 
-Windows:
-    .venv\Scripts\activate
+1. Upload or open the relevant `.ipynb` file in Google Colab.
+2. In Colab, open **Runtime → Change runtime type** and select a TPU accelerator
+   if it is available for your account and runtime.
+3. Run the notebook cells in order. Execute any package-installation cells before
+   importing the relevant libraries.
+4. Make the datasets and embedding files accessible to the Colab session, for
+   example by mounting Google Drive or uploading the files.
+5. Update any file paths so that they match the location of your data in the
+   current Colab session.
 
-macOS/Linux:
-    source .venv/bin/activate
+The notebooks include TensorFlow distribution/TPU setup code in some places.
+TPU use depends on the runtime configuration and the code's compatibility with
+the selected accelerator. If TPU initialization is unavailable or fails, review
+the notebook's fallback code and select another supported runtime.
 
-Install common packages:
-
-    pip install pandas numpy scikit-learn matplotlib tensorflow transformers==4.37.2
-
-If using a notebook interface, also install:
-
-    pip install jupyter
-
-Note: TensorFlow and Transformers compatibility depends on the Python version and
-operating system. If installation fails, use a compatible environment and adjust
-the package versions consistently.
+Package versions should be kept compatible with the Python version and Colab
+runtime. Some BERT notebooks pin `transformers==4.37.2`; follow the installation
+cells in each notebook where present. The notebooks use pandas, NumPy,
+scikit-learn, TensorFlow/Keras, Hugging Face Transformers, and matplotlib.
 
 Dataset and file paths
 ----------------------
@@ -153,30 +159,35 @@ running a notebook:
 
 Running the experiments
 -----------------------
-1. Clone or download this repository.
-2. Set up the Python environment described above.
-3. Download/place the dataset files and update the paths inside the notebook.
-4. Open a notebook in Jupyter or Google Colab.
-5. Run the cells from top to bottom, checking that each preprocessing,
-   training, and evaluation step completes successfully.
-6. Record the metrics produced by the run and the environment used.
+1. Clone or download this repository, or upload the required notebook to Google
+   Colab.
+2. Select a suitable Colab runtime; choose TPU if it is available and compatible
+   with the notebook.
+3. Make the dataset and any required GloVe embedding file available in the
+   session, for example by mounting Google Drive.
+4. Update the hard-coded paths in the notebook to match your Google Drive or
+   Colab file locations.
+5. Run the cells from top to bottom, checking the data loading, preprocessing,
+   accelerator setup, training, and evaluation steps.
+6. Record the metrics produced by the run along with the dataset split, package
+   versions, and runtime/accelerator used.
 
-For example, start Jupyter with:
+Google Colab Runtime and TPU
+-----------------------------
+Google Colab was selected for these experiments to use its hosted compute
+environment and TPU access, where available. BERT and hybrid BERT experiments
+can be computationally intensive, so accelerator access can be useful. TPU
+availability and quotas depend on the current Colab plan and session.
 
-    jupyter notebook
-
-Hardware
---------
-The BERT experiments can be computationally intensive. A GPU or Google Colab
-runtime may reduce training time, although a compatible CPU environment can be
-used where resources permit. The notebooks contain optional TensorFlow
-distribution/TPU setup code; a TPU is not required if the fallback strategy is
-used successfully.
+The notebooks contain TensorFlow distribution/TPU setup code in some cells.
+A TPU is not guaranteed to be available in every session, and code may require
+runtime-specific configuration. Review the setup cells before training and
+confirm that the model is actually using the selected accelerator.
 
 Important implementation notes
 ------------------------------
-- These are research notebooks, not a packaged command-line application or
-  ready-to-deploy API.
+- These are research notebooks designed for execution in Google Colab, not a
+  packaged command-line application or ready-to-deploy API.
 - Several notebooks use hard-coded Google Drive paths and must be configured
   before execution.
 - Some notebooks use GloVe vectors stored at a personal Drive path.
@@ -210,6 +221,8 @@ dataset's citation/license or access instructions where applicable.
 Citation
 --------
 If these notebooks support a publication, cite the associated paper or project
-and the original sources for the datasets, pretrained multilingual BERT model,
+and the sources for the datasets, pretrained multilingual BERT model,
 and GloVe embeddings as appropriate. Add the complete bibliographic details
+before publishing this repository.
+ Add the complete bibliographic details
 before publishing this repository.

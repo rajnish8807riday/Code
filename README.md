@@ -218,11 +218,4 @@ No license or dataset redistribution terms are specified by the notebooks.
 Add a repository license only if you have the right to do so, and include the
 dataset's citation/license or access instructions where applicable.
 
-Citation
---------
-If these notebooks support a publication, cite the associated paper or project
-and the sources for the datasets, pretrained multilingual BERT model,
-and GloVe embeddings as appropriate. Add the complete bibliographic details
-before publishing this repository.
- Add the complete bibliographic details
-before publishing this repository.
+
